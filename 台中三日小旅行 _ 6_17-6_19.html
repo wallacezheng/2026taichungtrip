@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/wallace/Downloads/taichung-trip.html -->
+<html lang="zh-Hant"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台中三日小旅行 | 6/17-6/19</title>
+<style>
+  :root {
+    --bg: #FBF6EF;
+    --bg-card: #FFFFFF;
+    --ink: #3A2E26;
+    --ink-soft: #6B5C4F;
+    --rust: #C1622D;
+    --rust-deep: #9C4A1F;
+    --olive: #6E7A4F;
+    --cream-line: #E8DCC8;
+    --tag-bg: #F1E6D3;
+    --shadow: 0 2px 10px rgba(58,46,38,0.08);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, "PingFang TC", "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding-bottom: 60px;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg, var(--rust) 0%, var(--rust-deep) 100%);
+    color: #fff;
+    padding: 28px 20px 22px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    bottom: -30px; right: -30px;
+    width: 140px; height: 140px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    position: relative;
+  }
+  header .sub {
+    font-size: 13px;
+    opacity: 0.92;
+    margin-top: 6px;
+    position: relative;
+  }
+  header .dates {
+    display: inline-flex;
+    gap: 10px;
+    margin-top: 12px;
+    font-size: 12px;
+    background: rgba(255,255,255,0.18);
+    padding: 6px 14px;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  /* Sticky nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--cream-line);
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
+  nav button {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    padding: 13px 16px;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  nav button.active {
+    color: var(--rust);
+    border-bottom-color: var(--rust);
+  }
+
+  main { max-width: 600px; margin: 0 auto; padding: 18px 16px 0; }
+  section { display: none; }
+  section.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Day card */
+  .day-card {
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+    overflow: hidden;
+    border: 1px solid var(--cream-line);
+  }
+  .day-header {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: var(--tag-bg);
+  }
+  .day-header .day-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rust-deep);
+  }
+  .day-header .day-date {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .day-header .chevron {
+    font-size: 14px;
+    color: var(--rust);
+    transition: transform 0.25s ease;
+  }
+  .day-card.open .chevron { transform: rotate(180deg); }
+  .day-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .day-card.open .day-body { max-height: 3000px; }
+  .day-body-inner { padding: 6px 18px 18px; }
+
+  .timeline-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--cream-line);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .time-badge {
+    flex: 0 0 56px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--rust);
+    padding-top: 2px;
+  }
+  .item-content { flex: 1; }
+  .item-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .item-note {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin-top: 3px;
+  }
+  .item-links {
+    margin-top: 6px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 11.5px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    background: var(--tag-bg);
+    color: var(--rust-deep);
+    border: 1px solid var(--cream-line);
+  }
+  .pill.map { background: #E9F0E0; color: var(--olive); }
+  .tag-must {
+    font-size: 10.5px;
+    background: var(--rust);
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 700;
+  }
+
+  /* Info sections */
+  .info-block {
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 16px;
+    border: 1px solid var(--cream-line);
+  }
+  .info-block h3 {
+    font-size: 15px;
+    color: var(--rust-deep);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--cream-line);
+    font-size: 13.5px;
+    gap: 10px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-row .label { color: var(--ink-soft); flex: 0 0 auto; }
+  .info-row .value { font-weight: 600; text-align: right; }
+
+  .shop-card {
+    border-left: 3px solid var(--rust);
+    padding: 10px 0 10px 12px;
+    margin-bottom: 12px;
+  }
+  .shop-card:last-child { margin-bottom: 0; }
+  .shop-name { font-weight: 700; font-size: 14.5px; }
+  .shop-meta { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+  .shop-pick {
+    font-size: 13px;
+    margin-top: 6px;
+    background: var(--tag-bg);
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: var(--ink);
+  }
+  .shop-pick b { color: var(--rust-deep); }
+
+  .alert-box {
+    background: #FBEFE3;
+    border: 1px solid #E8C9A0;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--rust-deep);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 8px;
+  }
+
+  /* Expense tracker */
+  .expense-form {
+    background: var(--bg-card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+    margin-bottom: 16px;
+    border: 1px solid var(--cream-line);
+  }
+  .form-row {
+    margin-bottom: 14px;
+  }
+  .form-row label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .payer-toggle {
+    display: flex;
+    gap: 8px;
+  }
+  .payer-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--cream-line);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.15s ease;
+  }
+  .payer-btn.selected {
+    border-color: var(--rust);
+    background: var(--tag-bg);
+    color: var(--rust-deep);
+  }
+  .form-row input[type="text"],
+  .form-row input[type="number"] {
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid var(--cream-line);
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    background: #fff;
+    color: var(--ink);
+  }
+  .form-row input:focus { outline: 2px solid var(--rust); outline-offset: 1px; }
+  .split-toggle {
+    display: flex;
+    gap: 8px;
+  }
+  .split-btn {
+    flex: 1;
+    padding: 9px;
+    border: 1px solid var(--cream-line);
+    border-radius: 10px;
+    background: #fff;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .split-btn.selected {
+    border-color: var(--olive);
+    background: #E9F0E0;
+    color: var(--olive);
+  }
+  .add-btn {
+    width: 100%;
+    padding: 13px;
+    background: var(--rust);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .add-btn:active { background: var(--rust-deep); }
+
+  .summary-card {
+    background: linear-gradient(135deg, var(--olive) 0%, #5A6440 100%);
+    color: #fff;
+    border-radius: 14px;
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .summary-card .summary-label {
+    font-size: 12.5px;
+    opacity: 0.85;
+  }
+  .summary-card .summary-amount {
+    font-size: 26px;
+    font-weight: 800;
+    margin-top: 6px;
+  }
+  .summary-card .summary-sub {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-top: 8px;
+  }
+
+  .expense-item {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border: 1px solid var(--cream-line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .expense-item .exp-left { flex: 1; min-width: 0; }
+  .expense-item .exp-item-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .expense-item .exp-meta {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .expense-item .exp-amount {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rust-deep);
+    flex: 0 0 auto;
+  }
+  .expense-item .exp-delete {
+    flex: 0 0 auto;
+    background: none;
+    border: none;
+    color: #B5A89A;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 6px;
+  }
+  .empty-state {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 13px;
+    padding: 30px 10px;
+  }
+  .section-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    margin: 18px 0 10px;
+    padding-left: 2px;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-soft);
+    padding: 30px 20px 10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>台中三日小旅行</h1>
+  <div class="sub">Old School 行旅 → 台中老爺酒店</div>
+  <div class="dates">
+    <span>🚄 6/17 (三) 19:31 台北出發</span>
+    <span>🚄 6/19 (五) 19:08 台中回程</span>
+  </div>
+</header>
+
+<nav id="tabs">
+  <button class="active" data-tab="itinerary">📅 行程</button>
+  <button data-tab="shops">🏪 店家攻略</button>
+  <button data-tab="logistics">🛵 交通住宿</button>
+  <button data-tab="expenses">💰 記帳</button>
+</nav>
+
+<main>
+
+  <!-- ITINERARY -->
+  <section id="itinerary" class="active">
+
+    <div class="day-card open">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <div class="day-title">Day 1 · 抵達夜</div>
+          <div class="day-date">6/17（三）</div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="day-body-inner">
+
+          <div class="timeline-item">
+            <div class="time-badge">19:31</div>
+            <div class="item-content">
+              <div class="item-title">高鐵台北出發</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">~20:20</div>
+            <div class="item-content">
+              <div class="item-title">抵達台中高鐵站</div>
+              <div class="item-note">車程約 50 分鐘</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">20:45</div>
+            <div class="item-content">
+              <div class="item-title">入住 Old School 行旅 田中央旅店</div>
+              <div class="item-note">台中車站步行約 5 分鐘</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJgRPi_z09aTQRAaFBd0Qic1E" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">20:30</div>
+            <div class="item-content">
+              <div class="item-title">一中街商圈晚餐</div>
+              <div class="item-note">學生街排隊小吃、消夜選擇多</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJDf4N72g9aTQRMCr-EB0v0K0" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card open">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <div class="day-title">Day 2 · 咖啡・古物・宵夜市</div>
+          <div class="day-date">6/18（四）</div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="day-body-inner">
+
+          <div class="alert-box">⚠️ 老賴紅茶週四公休，已排在 Day 3</div>
+
+          <div class="timeline-item">
+            <div class="time-badge">早上</div>
+            <div class="item-content">
+              <div class="item-title">旅店早餐 → 租機車</div>
+              <div class="item-note">推薦：車中寶台中火車站租機車（建國路159巷10號）</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">09:00</div>
+            <div class="item-content">
+              <div class="item-title">Tamp Temper Coffee <span class="tag-must">必喝</span></div>
+              <div class="item-note">評分 4.9，台中最強精品咖啡，老闆會介紹豆子產區</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJZ9bn9HQ9aTQRp2X0oIhCEhg" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">10:00</div>
+            <div class="item-content">
+              <div class="item-title">酷庫 kuku</div>
+              <div class="item-note">老物古董雜貨店，巷弄裡藏寶，慢慢挖</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJFdoLOxM9aTQR7qP-cOhE5NM" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">12:00</div>
+            <div class="item-content">
+              <div class="item-title">饗食天堂 LaLaport 台中店 <span class="tag-must">已訂位</span></div>
+              <div class="item-note">訂位編號 TCLA2026061811020</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJLZ62KYg9aTQRDca83mCUbvs" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">14:00</div>
+            <div class="item-content">
+              <div class="item-title">感傷唱片行 <span class="tag-must">必去</span></div>
+              <div class="item-note">下午 1 點開門・黑膠卡帶＋咖啡甜點</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJK_NPkKY9aTQR9e-rjxvE2FU" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">16:00</div>
+            <div class="item-content">
+              <div class="item-title">Check-in 台中老爺酒店</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">18:30</div>
+            <div class="item-content">
+              <div class="item-title">旱溪夜市晚餐</div>
+              <div class="item-note">週四限定營業，在地人最愛的方塊型夜市</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJqaM87zc9aTQRg6mT2EhZ5vg" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="day-card open">
+      <div class="day-header" onclick="toggleDay(this)">
+        <div>
+          <div class="day-title">Day 3 · 老市場散步日</div>
+          <div class="day-date">6/19（五）</div>
+        </div>
+        <div class="chevron">▾</div>
+      </div>
+      <div class="day-body">
+        <div class="day-body-inner">
+
+          <div class="timeline-item">
+            <div class="time-badge">早上</div>
+            <div class="item-content">
+              <div class="item-title">退房，行李寄放飯店或火車站</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">上午</div>
+            <div class="item-content">
+              <div class="item-title">還機車</div>
+              <div class="item-note">車中寶台中火車站租機車</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">10:00</div>
+            <div class="item-content">
+              <div class="item-title">第二市場 + 老賴紅茶 <span class="tag-must">必喝</span></div>
+              <div class="item-note">百年老市場、招牌紅茶現金交易，木瓜牛奶、菜頭粿也在這</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJn6lg0hI9aTQR96k14vG1Kic" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">11:30</div>
+            <div class="item-content">
+              <div class="item-title">光華小賣所</div>
+              <div class="item-note">退役火車車廂改裝小店，台灣風T恤、茶葉蛋</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJJWiYTkQ9aTQRmJjbOILS-SA" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">12:30</div>
+            <div class="item-content">
+              <div class="item-title">Fusion Space 1962</div>
+              <div class="item-note">舊化妝品工廠改建文創園區，咖啡廳、選物店適合悠閒拍照</div>
+              <div class="item-links">
+                <a class="pill map" href="https://www.google.com/maps/place/?q=place_id:ChIJGUN-HEo9aTQRUWNUBjjY2yY" target="_blank">📍 地圖</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">傍晚</div>
+            <div class="item-content">
+              <div class="item-title">市區或火車站附近簡單用餐</div>
+              <div class="item-note">取行李，準備搭車</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="time-badge">19:08</div>
+            <div class="item-content">
+              <div class="item-title">高鐵離開台中</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SHOPS -->
+  <section id="shops">
+
+    <div class="info-block">
+      <h3>☕ Tamp Temper Coffee</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.9（1460+ 則評論）・週一至週五 9:00–17:30，週六 9:30–16:00，週日公休</div>
+        <div class="shop-pick"><b>推薦：</b>單品手沖，老闆會主動介紹豆子產區與風味，空間迷你（2–3 個位子），純外帶也很方便。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🗄️ 酷庫 kuku</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.7（212 則評論）・每天 11:00–19:00（週末 13:00 開）</div>
+        <div class="shop-pick"><b>逛法：</b>店內物品從地板堆到天花板，玻璃器皿、老玩具、復古家具皆有，建議預留 30–60 分鐘細逛，包包請抓緊避免碰倒易碎品。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🍽️ 饗食天堂 LaLaport 台中店</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.4・午餐 11:30–14:00，已訂位 12:00（編號 TCLA2026061811020）</div>
+        <div class="shop-pick"><b>推薦：</b>生魚片、海鮮區新鮮度高，甜點區有哈根達斯、莫凡彼，烤鴨手捲評價也高。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>💿 感傷唱片行</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.6（643 則評論）・每天 13:00–18:00</div>
+        <div class="shop-pick"><b>必點：</b>水果茶（建議微糖）＋招牌起司蛋糕，店內有黑膠唱機播放老歌，可慢慢挖卡帶寶藏，據說是全台少數還在賣卡帶的店。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🌃 旱溪夜市</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.4（36000+ 則評論）・週二、週四、週五、週六營業，<b>週四 17:00–01:00</b></div>
+        <div class="shop-pick"><b>特色：</b>方塊型動線、在地人比觀光客多，是台中人公認最有人情味的夜市之一。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🍵 老賴紅茶（第二市場）</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 3.6（1572 則評論，老店常見現象）・週一二三五六日 7:30–18:00，<b>週四公休</b></div>
+        <div class="shop-pick"><b>必喝：</b>招牌紅茶（清爽回甘）、紅茶豆奶也是隱藏好評款。<b>僅收現金，無內用座位</b>，買了邊走邊喝最對味。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🚂 光華小賣所</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.2・每天 11:00–20:00（週末延長至 20:30）</div>
+        <div class="shop-pick"><b>推薦：</b>茶葉蛋評價很高，店內復古台灣 T 恤適合當紀念品，由退役火車車廂改裝，鐵道迷必拍。</div>
+      </div>
+    </div>
+
+    <div class="info-block">
+      <h3>🏭 Fusion Space 1962</h3>
+      <div class="shop-card">
+        <div class="shop-meta">評分 4.4（1088 則評論）・週二至週日 11:00–20:00，週一公休</div>
+        <div class="shop-pick"><b>推薦：</b>由 1962 年化妝品工廠改建，保留工業結構，內有咖啡廳、選物店與展覽空間，適合悠閒拍照、找個角落坐下喝咖啡。</div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- LOGISTICS -->
+  <section id="logistics">
+
+    <div class="info-block">
+      <h3>🚄 高鐵資訊</h3>
+      <div class="info-row"><span class="label">去程</span><span class="value">6/17（三）19:31 台北 → 台中（約 20:20 抵達）</span></div>
+      <div class="info-row"><span class="label">回程</span><span class="value">6/19（五）19:08 台中 → 台北</span></div>
+    </div>
+
+    <div class="info-block">
+      <h3>🏨 住宿</h3>
+      <div class="info-row"><span class="label">6/17 晚</span><span class="value">Old School 行旅 田中央旅店</span></div>
+      <div class="info-row"><span class="label">6/18 晚</span><span class="value">台中老爺酒店（16:00 入住）</span></div>
+      <div class="info-row"><span class="label">6/19 早</span><span class="value">退房，行李寄放</span></div>
+    </div>
+
+    <div class="info-block">
+      <h3>🛵 機車租借</h3>
+      <div class="info-row"><span class="label">租車時間</span><span class="value">6/18 早上 ～ 6/19 早上</span></div>
+      <div class="info-row"><span class="label">推薦店家</span><span class="value">車中寶台中火車站租機車</span></div>
+      <div class="info-row"><span class="label">地址</span><span class="value">建國路159巷10號</span></div>
+      <div class="info-row"><span class="label">電話</span><span class="value">04-2229-6616</span></div>
+      <div class="info-row"><span class="label">營業時間</span><span class="value">每天 9:00–21:00</span></div>
+      <div class="info-row"><span class="label">評分</span><span class="value">4.9（9950+ 則評論）</span></div>
+      <div class="shop-pick" style="margin-top:10px;">評價中常見免脫手套、免押證件、免押本票，附手機充電架，新手騎士也安心。建議出發前用 Google 或 LINE 確認價格、證件需求（國際駕照或台灣駕照+護照）。</div>
+    </div>
+
+  </section>
+
+  <!-- EXPENSES -->
+  <section id="expenses">
+
+    <div class="summary-card" id="summaryCard">
+      <div class="summary-label">結算結果</div>
+      <div class="summary-amount" id="summaryAmount">目前沒有需要分攤的支出</div>
+      <div class="summary-sub" id="summarySub">新增「兩人平分」項目後會自動結算</div>
+    </div>
+
+    <div class="expense-form">
+      <div class="form-row">
+        <label>誰先付的？</label>
+        <div class="payer-toggle">
+          <button class="payer-btn selected" id="btnWallace" onclick="selectPayer(&#39;Wallace&#39;)">Wallace</button>
+          <button class="payer-btn" id="btnMing" onclick="selectPayer(&#39;Ming&#39;)">Ming</button>
+        </div>
+      </div>
+      <div class="form-row">
+        <label>項目</label>
+        <input type="text" id="itemInput" placeholder="例如：饗食天堂午餐">
+      </div>
+      <div class="form-row">
+        <label>金額（NT$）</label>
+        <input type="number" id="amountInput" placeholder="0" inputmode="numeric">
+      </div>
+      <div class="form-row">
+        <label>分攤方式</label>
+        <div class="split-toggle">
+          <button class="split-btn selected" id="btnSplitShared" onclick="selectSplit(&#39;shared&#39;)">兩人平分</button>
+          <button class="split-btn" id="btnSplitSelf" onclick="selectSplit(&#39;self&#39;)">付款人自己的花費</button>
+        </div>
+      </div>
+      <button class="add-btn" onclick="addExpense()">＋ 新增記錄</button>
+    </div>
+
+    <div class="section-label">支出紀錄</div>
+    <div id="expenseList"><div class="empty-state">還沒有任何支出紀錄，新增第一筆吧！</div></div>
+
+  </section>
+
+</main>
+
+<footer>台中三日小旅行 · 6/17–6/19</footer>
+
+<script>
+  const tabs = document.querySelectorAll('#tabs button');
+  const sections = document.querySelectorAll('main > section');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  function toggleDay(headerEl) {
+    const card = headerEl.parentElement;
+    card.classList.toggle('open');
+  }
+
+  // ===== Expense Tracker =====
+  let selectedPayer = 'Wallace';
+  let selectedSplit = 'shared';
+  let expenses = [];
+
+  function selectPayer(name) {
+    selectedPayer = name;
+    document.getElementById('btnWallace').classList.toggle('selected', name === 'Wallace');
+    document.getElementById('btnMing').classList.toggle('selected', name === 'Ming');
+  }
+
+  function selectSplit(type) {
+    selectedSplit = type;
+    document.getElementById('btnSplitShared').classList.toggle('selected', type === 'shared');
+    document.getElementById('btnSplitSelf').classList.toggle('selected', type === 'self');
+  }
+
+  async function loadExpenses() {
+    try {
+      const result = await window.storage.get('expenses-list', true);
+      expenses = result && result.value ? JSON.parse(result.value) : [];
+    } catch (e) {
+      expenses = [];
+    }
+    renderExpenses();
+  }
+
+  async function saveExpenses() {
+    try {
+      await window.storage.set('expenses-list', JSON.stringify(expenses), true);
+    } catch (e) {
+      console.error('Storage error:', e);
+      alert('儲存失敗，請重試一次');
+    }
+  }
+
+  async function addExpense() {
+    const itemName = document.getElementById('itemInput').value.trim();
+    const amount = parseFloat(document.getElementById('amountInput').value);
+
+    if (!itemName) { alert('請輸入項目名稱'); return; }
+    if (!amount || amount <= 0) { alert('請輸入正確金額'); return; }
+
+    expenses.push({
+      id: Date.now(),
+      payer: selectedPayer,
+      item: itemName,
+      amount: amount,
+      split: selectedSplit
+    });
+
+    await saveExpenses();
+    document.getElementById('itemInput').value = '';
+    document.getElementById('amountInput').value = '';
+    renderExpenses();
+  }
+
+  async function deleteExpense(id) {
+    expenses = expenses.filter(e => e.id !== id);
+    await saveExpenses();
+    renderExpenses();
+  }
+
+  function renderExpenses() {
+    const listEl = document.getElementById('expenseList');
+
+    if (expenses.length === 0) {
+      listEl.innerHTML = '<div class="empty-state">還沒有任何支出紀錄，新增第一筆吧！</div>';
+    } else {
+      listEl.innerHTML = expenses.slice().reverse().map(e => {
+        const splitLabel = e.split === 'shared' ? '兩人平分' : `${e.payer} 自己的花費`;
+        return `
+          <div class="expense-item">
+            <div class="exp-left">
+              <div class="exp-item-name">${escapeHtml(e.item)}</div>
+              <div class="exp-meta">${e.payer} 付款 · ${splitLabel}</div>
+            </div>
+            <div class="exp-amount">$${e.amount.toLocaleString()}</div>
+            <button class="exp-delete" onclick="deleteExpense(${e.id})">✕</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    calculateSummary();
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+  }
+
+  function calculateSummary() {
+    // Track how much each person paid that should count toward the shared pool,
+    // and how much each person owes for shared items.
+    let wallacePaidShared = 0;
+    let mingPaidShared = 0;
+    let sharedTotal = 0;
+
+    expenses.forEach(e => {
+      if (e.split === 'shared') {
+        sharedTotal += e.amount;
+        if (e.payer === 'Wallace') wallacePaidShared += e.amount;
+        else mingPaidShared += e.amount;
+      }
+      // 'self' split items don't affect settlement — each person already covered their own.
+    });
+
+    const summaryAmountEl = document.getElementById('summaryAmount');
+    const summarySubEl = document.getElementById('summarySub');
+
+    if (sharedTotal === 0) {
+      summaryAmountEl.textContent = '目前沒有需要分攤的支出';
+      summarySubEl.textContent = '新增「兩人平分」項目後會自動結算';
+      return;
+    }
+
+    const halfShare = sharedTotal / 2;
+    const diff = wallacePaidShared - halfShare; // positive: Wallace overpaid, Ming owes Wallace
+
+    if (Math.abs(diff) < 1) {
+      summaryAmountEl.textContent = '兩人已平分，不需互相補款 🎉';
+      summarySubEl.textContent = `共同支出總額 $${sharedTotal.toLocaleString()}，各付一半 $${halfShare.toLocaleString()}`;
+    } else if (diff > 0) {
+      summaryAmountEl.textContent = `Ming 需要給 Wallace $${Math.round(diff).toLocaleString()}`;
+      summarySubEl.textContent = `共同支出總額 $${sharedTotal.toLocaleString()}・Wallace 已付 $${wallacePaidShared.toLocaleString()}，Ming 已付 $${mingPaidShared.toLocaleString()}`;
+    } else {
+      summaryAmountEl.textContent = `Wallace 需要給 Ming $${Math.round(-diff).toLocaleString()}`;
+      summarySubEl.textContent = `共同支出總額 $${sharedTotal.toLocaleString()}・Wallace 已付 $${wallacePaidShared.toLocaleString()}，Ming 已付 $${mingPaidShared.toLocaleString()}`;
+    }
+  }
+
+  loadExpenses();
+</script>
+
+
+
+</body></html>
